@@ -1,0 +1,95 @@
+﻿@using MS.Localization
+<doctype html!>
+    <html>
+    <head>
+        <title>Light gym | @ViewBag.Title</title>
+        <script type="application/x-javascript"> addEventListener("load", function() {setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        @Styles.Render("~/Content/css/main")
+        @Scripts.Render("~/bundles/main")
+    </head>
+    <body>
+        <div class="header-top">
+            <div class="header-nav">
+                <section class="color ss-style-bigtriangle nav-top">
+                    <nav class="navbar navbar-default">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="logo displ_stn">
+                                    <center><h1>@Html.ActionLink("Light gym", MVC.Home.Index())</h1></center>
+                                </div>
+                            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav float-nav nav-algn_r">
+                                    @if (!Request.IsAuthenticated)
+                                    {
+                                        <li>@Html.ActionLink(Strings.Login, MVC.Home.Login())</li>
+                                    }
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <li>@Html.ActionLink(Strings.Logout, MVC.Home.Logout())</li>
+                                    }
+                                    <li>@Html.ActionLink(Strings.Panel, MVC.UserArea.Index())</li>
+                                </ul>
+                                <div class="logo float-nav nav-algn_c">
+                                    <h1>@Html.ActionLink("Light gym", MVC.Home.Index())</h1>
+                                </div>
+                                <ul class="nav navbar-nav navbar-right float-nav nav-algn_l">
+                                    <li><a href="#trainers">@Strings.OurTrainers</a></li>
+                                    <li><a href="#info">@Strings.Info</a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </nav>
+                </section>
+                <svg id="bigTriangleColor" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 102" preserveAspectRatio="none">
+                    <path d="M0 0 L50 100 L100 0 Z" />
+                </svg>
+            </div>
+            <div class="head-top-text">
+                <div class="container">
+                    <h2>Light gym</h2>
+                    <p style="color:black">Light gym | @Strings.MainPortal</p>
+                    <a class="btn btn-default hd-more" href="#" role="button">@Strings.more</a>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <div class="footer">
+            <div class="container">
+                <div class="col-md-4 ft logo">
+                    <div class="logo fot">
+                        <h1>@Html.ActionLink("Light gym", MVC.Home.Index(), new { @class = "ft-log" })</h1>
+                    </div>
+                </div>
+                <div class="col-md-4 ft cpyrt">
+                </div>
+                <div class="col-md-4 ft soc">
+                    <ul class="social">
+                        <li><a href="#" class="face"></a></li>
+                        <li><a href="#" class="twit"></a></li>
+                        <li><a href="#" class="gplus"></a></li>
+                        <li><a href="#" class="inst"></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        @if (UICulture == "uk")
+        {
+            <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "en", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><img src="~/images/en.png" id="fixedbutton"></a>
+        }
+        @if (UICulture == "en" || UICulture=="")
+        {
+            <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "uk", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><img src="~/images/ua.png" id="fixedbutton"></a>
+        }
+        @RenderSection("Scripts", false)
+    </body>
+</html>

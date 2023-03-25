@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<MS.Models.Models.RecordViewModel>
+@using MS.Localization
+@using MS.Common.Enums
+@using PagedList.Mvc;
+<table class="table">
+    <tr>
+        <th>
+            @Strings.Name
+        </th>
+        <th>
+            @Strings.Surname
+        </th>
+        <th>
+            @Strings.PhoneNumber
+        </th>
+        <th>
+            @Strings.Email
+        </th>
+        <th>
+            @Strings.TrainingDate
+        </th>
+        <th></th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @if (item.StatusId == (int)ETrainingRecordStatus.Closed)
+                            {
+                                @Html.DropDownListFor(modelItem => item.StatusId, new SelectList(EnumExtensions.GetEnumSelectListItemCollection<ETrainingRecordStatus>(), "Value", "Text", item.StatusId.ToString()), new { @class = "form-control", @id = "RecordStatus", @RecordStatus = "RecordStatus", @RecordId = item.RecordId, @disabled = "true" })
+                            }
+                            @if (item.StatusId != (int)ETrainingRecordStatus.Closed)
+                            {
+                                @Html.DropDownListFor(modelItem => item.StatusId, new SelectList(EnumExtensions.GetEnumSelectListItemCollection<ETrainingRecordStatus>(), "Value", "Text", item.StatusId.ToString()), new { @class = "form-control", @id = "RecordStatus", @RecordStatus = "RecordStatus", @RecordId = item.RecordId })
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<center>
+    @Html.PagedListPager(Model, page => Url.Action("Records", new { page }))
+</center>
+
+

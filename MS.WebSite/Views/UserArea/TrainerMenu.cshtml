@@ -1,0 +1,14 @@
+﻿@using MS.Localization;
+<li>
+    <a href="@Url.Action("Records", "UserArea")"><i class="fa fa-calendar"></i><span>@Strings.Records</span></a>
+</li>
+<li>
+    @if (UICulture == "en")
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "uk", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><i class="fa fa-globe" aria-hidden="true"></i><span>UA</span></a>
+    }
+    else
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "en", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><i class="fa fa-globe" aria-hidden="true"></i><span>En</span></a>
+    }
+</li>

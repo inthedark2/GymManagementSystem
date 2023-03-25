@@ -1,0 +1,75 @@
+﻿@using MS.Localization
+@model MS.Models.Models.SubscriptionFreezeViewModel
+@{
+    ViewBag.Title = Strings.FreezeSubscription;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @if (ViewBag.IsActiveSubscription == false)
+        {
+            <center><h2>@Strings.NoActiveSubscription</h2></center>
+        }
+        @if (ViewBag.IsActiveSubscription == true)
+        {
+            <center><h2>@Strings.LeftFrozenDays: @Model.LeftFrozenDays</h2></center>
+            using (Html.BeginForm(MVC.UserArea.SubscriptionFreeze(), FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SubscriptionId)
+                @Html.HiddenFor(model => model.LeftFrozenDays)
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input type="text" class="input-sm form-control" placeholder="@Strings.FreezeFrom" name="From" id="From" />
+                                <span class="input-group-addon">to</span>
+                                <input type="text" class="input-sm form-control" placeholder="@Strings.FreezeTo" name="To" id="To" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2 col-md-offset-5">
+                    <center>
+                        <input type="submit" value="@Strings.Freeze" class="btn btn-success" />
+                    </center>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        Date.prototype.addDays = function (days) {
+            var dat = new Date(this.valueOf());
+            dat.setDate(dat.getDate() + days);
+            return dat;
+        };
+        $('#From').datepicker({
+            format: 'dd/mm/yyyy',
+            weekStart: 1,
+            maxViewMode: 0,
+            startDate: "+1d",
+            orientation: "bottom auto",
+        });
+        var days = parseInt($('#LeftFrozenDays').val());
+        $('#To').datepicker({
+            format: 'dd/mm/yyyy',
+            weekStart: 1,
+            maxViewMode: 0,
+            startDate: "+1d",
+            //endDate: "+10d",
+            endDate: new Date().addDays(days),
+            orientation: "bottom auto",
+        });
+        $('#From').change(function () {
+            var date = new Date($('#From').val());
+            var days = parseInt($('#LeftFrozenDays').val());
+            date.setDate(date.getDate() + days);
+            $('#To').datepicker('setStartDate', $('#From').val());
+            $('#To').datepicker('setEndDate', $('#To').datepicker('getStartDate').addDays(days - 1));
+        });
+    </script>
+}

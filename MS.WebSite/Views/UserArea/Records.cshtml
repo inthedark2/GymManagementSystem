@@ -1,0 +1,86 @@
+﻿@using PagedList.Mvc;
+@using MS.Localization
+@using MS.Common.Enums
+@model PagedList.IPagedList<MS.Models.Models.RecordViewModel>
+@{
+    ViewBag.Title = Strings.RecordsTitle;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <style>
+        #page_container {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        #accordion_search_bar_container {
+            position: relative;
+        }
+
+            #accordion_search_bar_container:after {
+                content: '\e003';
+                font-family: Glyphicons Halflings;
+                width: 18px;
+                height: 18px;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+
+            #accordion_search_bar_container #accordion_search_bar {
+                display: block;
+                margin: 10px auto;
+                width: 100%;
+                padding: 7px 10px;
+                border: 1px solid #cacaca;
+                border-radius: 25px;
+                outline: 0;
+            }
+
+        .panel-title a {
+            display: block;
+        }
+    </style>
+}
+<div class="panel panel-default">
+    <div class="panel-group" id="accordion">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#search" class="collapsed" aria-expanded="false"><i class="fa fa-search"></i>&nbsp;Search</a>
+        </div>
+        <div class="panel-collapse collapse" id="search">
+            <div class="panel-body">
+                <div id="accordion_search_bar_container">
+                    <input type="search"
+                           id="accordion_search_bar"
+                           onkeyup="Search()"
+                           placeholder="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" id="recorstable">
+        @Html.Partial("_RecordsTable", Model)
+    </div>
+</div>
+<script type="text/javascript">
+    $("[RecordStatus]").change(function () {
+        var id = $(this).attr('RecordId');
+        var value = $(this).val();
+        $.ajax({
+            url: '@Url.Action(MVC.UserArea.ChangeTrainingStatus())',
+            type: "POST",
+            dataType: "JSON",
+            data: JSON.stringify({
+                trainingId: id,
+                statusId: value
+            }),
+            contentType: 'application/json; charset=utf-8',
+        });
+    });
+
+    function Search() {
+        var input, filter;
+        input = document.getElementById('accordion_search_bar');
+        filter = input.value.toUpperCase();
+        $("#recorstable").load('@Url.Action(MVC.UserArea.Records())' + '?page=1&filter=' + filter)
+    }
+</script>

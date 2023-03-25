@@ -1,0 +1,15 @@
+﻿@using MS.Common.Constans
+@using MS.Localization
+@{
+    ViewBag.Title = Strings.YourInfo;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+@if (Roles.IsUserInRole(User.Identity.Name, Constants.Trainer))
+{
+    @Html.Action(MVC.UserArea.TrainerInfo());
+}
+@if (Roles.IsUserInRole(User.Identity.Name, Constants.Client))
+{
+    @Html.Action(MVC.UserArea.ClientInfo());
+}
+

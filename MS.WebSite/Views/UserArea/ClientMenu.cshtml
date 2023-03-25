@@ -1,0 +1,17 @@
+﻿@using MS.Localization;
+<li><a href="@Url.Action("Buy", "UserArea")"><i class="fa fa-shopping-cart"></i><span>@Strings.BuyNewSubscription</span></a></li>
+<li><a href="@Url.Action("Subscriptions", "UserArea")"><i class="fa fa-address-card"></i><span>@Strings.MySubscriptions</span></a></li>
+<li><a href="@Url.Action("NewTrainingRecord", "UserArea")"><i class="fa fa-calendar-plus-o"></i><span>@Strings.NewRecord</span></a></li>
+<li><a href="@Url.Action("MyTrainingRecords", "UserArea")"><i class="fa fa-list-alt"></i><span>@Strings.MyRecords</span></a></li>
+<li><a href="@Url.Action("SubscriptionFreeze", "UserArea")"><i class="fa fa-pause"></i><span>@Strings.Menu_SubscriptionFreeze</span></a></li>
+<li><a href="@Url.Action("ECard", "UserArea")"><i class="fa fa-barcode"></i><span>@Strings.ECard</span></a></li>
+<li>
+    @if (UICulture == "en")
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "uk", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><i class="fa fa-globe" aria-hidden="true"></i><span>UA</span></a>
+    }
+    else
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "en", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><i class="fa fa-globe" aria-hidden="true"></i><span>EN</span></a>
+    }
+</li>

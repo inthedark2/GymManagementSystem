@@ -1,0 +1,163 @@
+﻿@using MS.Common.Enums;
+@using MS.Localization;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MS.Models.Models.SubscriptionsViewModel>
+@{
+    ViewBag.Title = Strings.MySubscriptions;
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.min.js"></script>
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Strings.SubscroptionType
+                    </th>
+                    <th>
+                        @Strings.SubscriptionStatus
+                    </th>
+                    <th>
+                        @Strings.StartDate
+                    </th>
+                    <th>
+                        @Strings.EndDate
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubscroptionType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubscriptionStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @if (item.SubscriptionStatusId == (int)ESubscriptionStatus.Active)
+                            {
+                                <a data-toggle="tooltip" title="@Strings.SubscriptionFreeze" data-placement="top" class="btn btn-primary btn-xs" href="@Url.Action(MVC.UserArea.SubscriptionFreeze())"><span class="fa fa-snowflake-o"></span></a>
+                            }
+                            @if (item.SubscriptionStatusId == (int)ESubscriptionStatus.Frozen)
+                            {
+                                <button type='button' title="@Strings.ResumeSubscription" style='margin-left: 2px; margin-right: 2px;' onclick='unpauseSubscription(@item.SubscriptionId);' class='btn btn-primary btn-xs'><span class='fa fa-history'></span></button>
+                            }
+                            @if ((item.SubscriptionStatusId == (int)ESubscriptionStatus.New || item.SubscriptionStatusId == (int)ESubscriptionStatus.Payed) && ViewBag.CountOfWorkedSubscriptions == 0)
+                            {
+                                <button type='button' title="@Strings.ActivateSubscription" style='margin-left: 2px; margin-right: 2px;' onclick='AcrivateSubscription(@item.SubscriptionId);' class='btn btn-primary btn-xs'><span class='fa fa-play'></span></button>
+                            }
+                            @if (item.SubscriptionStatusId == (int)ESubscriptionStatus.New)
+                            {
+                                <a data-toggle="tooltip" title="Pay" data-placement="top" class="btn btn-success btn-xs" href="@Url.Action("PayBySubscriptionId","userArea",new { subscriptionId = item.SubscriptionId })"><span class="fa fa-money"></span></a>
+                            }
+                            @if (item.SubscriptionStatusId == (int)ESubscriptionStatus.Expired || item.SubscriptionStatusId == (int)ESubscriptionStatus.New)
+                            {
+                                <button type='button' title="@Strings.DeleteSubscription" style='margin-left: 2px; margin-right: 2px;' onclick='DeleteSubscription(@item.SubscriptionId);' class='btn btn-danger btn-xs'><span class='fa fa-trash'></span></button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <center>
+                @Html.PagedListPager(Model, page => Url.Action("Subscriptions", new { page }))
+            </center>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function unpauseSubscription(subscriptionId) {
+        swal({
+            title: "@Strings.ResumeSubscriptionQuenstion",
+            showCancelButton: true,
+            confirmButtonText: "@Strings.Yes",
+            cancelButtonText: "@Strings.No",
+            type: "info",
+            preConfirm: function () {
+                $.ajax({
+                    url: '@Url.Action(MVC.UserArea.ResumeSubscription())',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify({
+                        Id: subscriptionId
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        location.reload();
+                    },
+                });
+            }
+        });
+    }
+
+    function AcrivateSubscription(subscriptionId) {
+        swal({
+            title: "@Strings.ActivateSubscriptionQuestion",
+            showCancelButton: true,
+            confirmButtonText: "@Strings.Yes",
+            cancelButtonText: "@Strings.No",
+            type: "info",
+            preConfirm: function () {
+                $.ajax({
+                    url: '@Url.Action(MVC.UserArea.ActivateSubscription())',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify({
+                        id: subscriptionId
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        location.reload();
+                    },
+                });
+            }
+        });
+    }
+
+    function DeleteSubscription(subscriptionId) {
+        swal({
+            title: "@Strings.DeleteSubscriptionQuestion",
+            showCancelButton: true,
+            confirmButtonText: "@Strings.Yes",
+            cancelButtonText: "@Strings.No",
+            type: "info",
+            preConfirm: function () {
+                $.ajax({
+                    url: '@Url.Action(MVC.UserArea.RemoveExpiredSubscription())',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify({
+                        id: subscriptionId
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        location.reload();
+                    },
+                });
+            }
+        });
+    }
+
+    function Pay(subscriptionId) {
+        $.ajax({
+            url: '@Url.Action(MVC.UserArea.PayBySubscriptionId())',
+            type: "POST",
+            dataType: "JSON",
+            data: JSON.stringify({
+                subscriptionId: subscriptionId
+            }),
+            contentType: 'application/json; charset=utf-8',
+        });
+    }
+</script>

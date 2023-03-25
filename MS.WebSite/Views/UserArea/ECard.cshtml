@@ -1,0 +1,14 @@
+﻿@using MS.Localization
+@{
+    ViewBag.Title = Strings.ECard;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+
+<div class="col-md-6 col-md-offset-3 chit-chat-layer1-left">
+    <div class="work-progres">
+        <center>
+            <img src='http://barcode.tec-it.com/barcode.ashx?translate-esc=off&data=@ViewBag.CardNumber&code=Code25IL&unit=Fit&dpi=96&imagetype=Gif&rotation=0&color=000000&bgcolor=FFFFFF&qunit=Mm&quiet=0' alt='Barcode Generator TEC-IT' />
+        </center>
+    </div>
+</div>
+

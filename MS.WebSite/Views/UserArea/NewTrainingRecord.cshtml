@@ -1,0 +1,96 @@
+﻿@model MS.Models.Models.NewTrainingModel
+@using MS.Localization
+@{
+    ViewBag.Title = Strings.NewTrainingRecord;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <center><h2>@Strings.SelectYourTrainer</h2></center>
+        @using (Html.BeginForm(MVC.UserArea.NewTrainingRecord(), FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <table class="table table-responsive">
+                <tbody>
+                    @foreach (var item in Model.Trainers)
+                {
+                    string id = "trainerId" + @item.Id;
+                        <tr>
+                            <td class="col-md-3">
+                                <div class="radio">
+                                    <label>@Html.RadioButtonFor(model => model.TrainerId, item.Id, new { id = @id })<img class="img-rounded" style="height:70px" src="@Html.Raw(item.PhotoPath)" data-toggle="tooltip" title="<img src='@Html.Raw(item.PhotoPath)' style='height:300px'/>" /></label>
+                                </div>
+                            </td>
+                            <td class="col-md-3">
+                                <div class="radiotext">
+                                    <label for=@id>@item.Name</label>
+                                </div>
+                            </td>
+                            <td class="col-md-3">
+                                <div class="radiotext">
+                                    <label for=@id>@item.Surname</label>
+                                </div>
+                            </td>
+                            <td class="col-md-3">
+                                <div class="radiotext">
+                                    <label for=@id>@item.PhoneNumber</label>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <center><h2>@Strings.SelectTrainingDateAndTime</h2></center>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" id="TrainingDate" name="TrainingDate" placeholder="@Strings.ChooseDate" class="form-control" style="height:30px;width:200px">
+                            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                            <input type="text" id="TrainingTime" name="TrainingTime" placeholder="@Strings.ChooseTime" class="form-control" style="height:30px;width:200px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-2 col-md-offset-5">
+                <div>
+                    <input type="submit" value="@Strings.AddRecord" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $('[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'bottom',
+            html: true
+        });
+        $(function () {
+            $("#TrainingDate").datepicker({
+                format: 'dd/mm/yyyy',
+                weekStart: 1,
+                startDate: new Date(),
+                daysOfWeekDisabled: "0,6",
+                orientation: "bottom auto",
+                maxViewMode: 0
+            });
+            $('#TrainingTime').timepicker({
+                timeFormat: 'HH:mm',
+                interval: 60,
+                minTime: '10',
+                maxTime: '8:00pm',
+                // defaultTime: '11',
+                startTime: '10:00',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true
+            });
+        });
+    </script>
+}

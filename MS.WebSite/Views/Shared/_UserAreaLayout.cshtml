@@ -1,0 +1,117 @@
+﻿@using MS.Localization;
+@using MS.Common.Constans
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Light gym | @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    @Styles.Render("~/Content/css/userArea")
+    @Scripts.Render("~/bundles/userArea")
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                <div class="header-main">
+                    <div class="header-left">
+                        <div class="logo-name">
+                            <a href="@Url.Action(MVC.Home.Index())">
+                                <h1>LightGym</h1>
+                            </a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="profile_details">
+                            <ul>
+                                <li class="dropdown profile_details_drop">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <div class="profile_img">
+                                            <div class="user-name">
+                                                <p>@User.Identity.Name</p>
+                                                <span></span>
+                                            </div>
+                                            <i class="fa fa-angle-down lnr"></i>
+                                            <i class="fa fa-angle-up lnr"></i>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu drp-mnu">
+                                        <li> <a href="@Url.Action(MVC.UserArea.EditInfo())"><i class="fa fa-user"></i>@Strings.Profile</a> </li>
+                                        <li> <a href="@Url.Action(MVC.Home.Logout())"><i class="fa fa-sign-out"></i>@Strings.Logout</a> </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="inner-block">
+                    <div class="blank">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="copyrights">
+                    <p>© @DateTime.Now.Year Management system. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <div class="logo">
+                <a href="#" class="sidebar-icon fa fa-bars"></a><a href="#">
+                    <span id="logo"></span>
+                </a>
+            </div>
+            <div class="menu">
+                <ul id="menu">
+                    <li id="menu-home"><a href="@Url.Action(MVC.UserArea.Index())"><i class="fa fa-tachometer"></i><span>@Strings.MainPage</span></a></li>
+                    @if (Roles.IsUserInRole(User.Identity.Name, Constants.Trainer))
+                    {
+                        @Html.Partial(MVC.UserArea.Views.TrainerMenu)
+                    }
+                    @if (Roles.IsUserInRole(User.Identity.Name, Constants.Client))
+                    {
+                        @Html.Partial(MVC.UserArea.Views.ClientMenu)
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var navoffeset = $(".header-main").offset().top;
+            $(window).scroll(function () {
+                var scrollpos = $(window).scrollTop();
+                if (scrollpos >= navoffeset) {
+                    $(".header-main").addClass("fixed");
+                } else {
+                    $(".header-main").removeClass("fixed");
+                }
+            });
+        });
+    </script>
+    <script>
+        var toggle = true;
+        $(".sidebar-icon").click(function () {
+            if (toggle) {
+                $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                $("#menu span").css({ "position": "absolute" });
+            }
+            else {
+                $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                setTimeout(function () {
+                    $("#menu span").css({ "position": "relative" });
+                }, 400);
+            }
+            toggle = !toggle;
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>                     

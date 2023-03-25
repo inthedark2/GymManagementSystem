@@ -1,0 +1,71 @@
+﻿@model MS.Models.Models.BuyViewModel
+@using MS.Localization;
+
+@{
+    ViewBag.Title = Strings.BuySubscription;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+}
+<div class="col-md-6 col-md-offset-3 chit-chat-layer1-left">
+    <div class="work-progres">
+
+        @if (Model == null)
+            {
+            <center>
+                <p>@ViewBag.ErrorMessage</p>
+            </center>
+        }
+        @if (Model != null)
+            {
+            <div class="chit-chat-heading">@Strings.BuyNewSubscription</div>
+            <div class="table-responsive">
+                @using (Html.BeginForm(MVC.UserArea.Buy(), FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row" style="margin-left:0px;margin-right:0px">
+                        <div class="col-md-4 col-md-offset-4">
+                            @Html.DropDownListFor(model => model.SubscriptionTypeId, new SelectList(ViewBag.ListType, "Id", "Name", Model.SubscriptionTypeId), string.Empty, new { @class = "form-control", @id = "type" })
+                            @Html.ValidationMessageFor(model => model.SubscriptionTypeId, "", new { @class = "text-danger", @id = "error" })
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1 row" id="info" style="margin-left:0px;margin-right:0px;margin-bottom:20px;height:30px">
+                        <p id="price"></p><p id="desc"></p>
+                    </div>
+                    <div class="form-group row" style="margin-left:0px;margin-right:0px">
+                        <div class="col-md-2 col-md-offset-5">
+                            <center><input type="submit" value="@Strings.Next" class="btn btn-default" /></center>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#type').change(function () {
+            $("#error").hide();
+            var type = $('#type').val();
+            if (type == "") {
+                $("#price").html("<p></p>");
+                $("#desc").html("<p></p>");
+            }
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action(MVC.UserArea.GetSubscriptionPrice())',
+                data: { id: type }
+            })
+            .done(function (data) {
+                $.each(data, function (index, element) {
+                    if (index == 'price') {
+                        element;
+                        $("#price").html("<b>@Strings.Price:</b> " + element);
+                    }
+                    if (index == 'description') {
+                        $("#desc").html("<b>@Strings.Description:</b> " + element);
+                    }
+                });
+            })
+        })
+    </script>
+}

@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc;
+@using MS.Common.Enums
+@using MS.Localization
+@model PagedList.IPagedList<MS.Models.Models.ClientRecordViewModel>
+@{
+    ViewBag.Title = Strings.MyTrainingRecords;
+    Layout = "~/Views/Shared/_UserAreaLayout.cshtml";
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.8/sweetalert2.min.js"></script>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Strings.TrainingDate
+                    </th>
+                    <th>
+                        @Strings.Trainer
+                    </th>
+                    <th>
+                        @Strings.Status
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrainingDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrainerFullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StatusName)
+                        </td>
+                        <td>
+                            @if (item.StatusId != (int)ETrainingRecordStatus.Closed)
+                            {
+                                <button type='button' title="@Strings.CancelRecord" style='margin-left: 2px; margin-right: 2px;' onclick='CancelRecord(@item.RecordId);' class='btn btn-danger btn-xs'><span class='fa fa-ban'></span></button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <center>
+                @Html.PagedListPager(Model, page => Url.Action("MyTrainingRecords", new { page }))
+            </center>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function CancelRecord(recordId) {
+        swal({
+            title: "@Strings.CancelRecordQuestion",
+            showCancelButton: true,
+            confirmButtonText: "@Strings.Yes",
+            cancelButtonText: "@Strings.No",
+            type: "info",
+            preConfirm: function () {
+                $.ajax({
+                    url: '@Url.Action(MVC.UserArea.CancelTrainingRecord())',
+                    type: "POST",
+                    dataType: "JSON",
+                    data: JSON.stringify({
+                        Id: recordId
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function () {
+                        location.reload();
+                    },
+                });
+            }
+        });
+    }
+</script>

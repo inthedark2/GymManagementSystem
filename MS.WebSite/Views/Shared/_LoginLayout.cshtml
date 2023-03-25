@@ -1,0 +1,32 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Light gym | @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    @Styles.Render("~/Content/css/userArea")
+    @Scripts.Render("~/bundles/userArea")
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-main">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="copyrights">
+        <p>© @DateTime.Now.Year Management system. All Rights Reserved</p>
+    </div>
+    @if (UICulture == "uk")
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "en", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><img src="~/images/en.png" id="fixedbutton"></a>
+    }
+    @if (UICulture == "en" || UICulture == "")
+    {
+        <a href="@string.Format("{0}{1}", Url.Action(ViewContext.RouteData.Values["action"].ToString(), new {lang = "uk", id = ViewContext.RouteData.Values["id"] ?? null}), Request.Url.Query)"><img src="~/images/ua.png" id="fixedbutton"></a>
+    }
+    @RenderSection("Scripts", false)
+</body>
+</html>

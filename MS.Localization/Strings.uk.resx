@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Error_inputErrorData" xml:space="preserve">
+    <value>Введені невірні дані</value>
+  </data>
+  <data name="Error_SomethingWrong" xml:space="preserve">
+    <value>Щось пішло не так</value>
+  </data>
+  <data name="Error_LoginAndPasswordIncorect" xml:space="preserve">
+    <value>Логін і пароль невірні</value>
+  </data>
+  <data name="ChooseWhoAreYou" xml:space="preserve">
+    <value>Виберіть хто ви</value>
+  </data>
+  <data name="ClubCardNumber" xml:space="preserve">
+    <value>Номер клубної карти</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Підтвердіть пароль</value>
+  </data>
+  <data name="DontHaveAccount" xml:space="preserve">
+    <value>Немаєте акаунта?</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="PasswordMustMatch" xml:space="preserve">
+    <value>Пароль має співпадати</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Реєстрація</value>
+  </data>
+  <data name="VerificationСode" xml:space="preserve">
+    <value>Код підтвердження</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефону</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Прізвище</value>
+  </data>
+  <data name="TrainingDate" xml:space="preserve">
+    <value>Дата тренування</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Стать</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Вихід</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профіль</value>
+  </data>
+  <data name="QuantityOfClientCurrentDay" xml:space="preserve">
+    <value>Кількість клієнтів сьогодні</value>
+  </data>
+  <data name="QuantityOfClientThisWeek" xml:space="preserve">
+    <value>Кількість клієнтів цього тижня</value>
+  </data>
+  <data name="Records" xml:space="preserve">
+    <value>Тренування</value>
+  </data>
+  <data name="SubscriptionEndDate" xml:space="preserve">
+    <value>Дата закінчення обонемента</value>
+  </data>
+  <data name="SubscriptionStatus" xml:space="preserve">
+    <value>Статус абонемента</value>
+  </data>
+  <data name="SubscriptionType" xml:space="preserve">
+    <value>Тип абонемента</value>
+  </data>
+  <data name="BuyNewSubscription" xml:space="preserve">
+    <value>Купити новий абонемент</value>
+  </data>
+  <data name="ECard" xml:space="preserve">
+    <value>Електронна картка</value>
+  </data>
+  <data name="Error_SelectSubscriptionType" xml:space="preserve">
+    <value>Вам треба вибрати тип абонементу</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Головна сторінка</value>
+  </data>
+  <data name="MySubscriptions" xml:space="preserve">
+    <value>Мої абонементи</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далі</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Оплатити</value>
+  </data>
+  <data name="MyRecords" xml:space="preserve">
+    <value>Мої записи на тренування</value>
+  </data>
+  <data name="NewRecord" xml:space="preserve">
+    <value>Запис на тренування</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Trainer" xml:space="preserve">
+    <value>Тренер</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Перевірити</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клієнт</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вхід</value>
+  </data>
+  <data name="Menu_SubscriptionFreeze" xml:space="preserve">
+    <value>Заморозка абонемента</value>
+  </data>
+  <data name="Freeze" xml:space="preserve">
+    <value>Заморозити</value>
+  </data>
+  <data name="FreezeFrom" xml:space="preserve">
+    <value>Заморозити з</value>
+  </data>
+  <data name="FreezeTo" xml:space="preserve">
+    <value>Заморозити до</value>
+  </data>
+  <data name="LeftFrozenDays" xml:space="preserve">
+    <value>Залишилось днів для заморозки</value>
+  </data>
+  <data name="NoActiveSubscription" xml:space="preserve">
+    <value>У вас немає активних абонементів</value>
+  </data>
+  <data name="PayWithPortmone" xml:space="preserve">
+    <value>Оплата через Portmone</value>
+  </data>
+  <data name="SelectTrainingDateAndTime" xml:space="preserve">
+    <value>Виберіть дату і час тренування</value>
+  </data>
+  <data name="SelectYourTrainer" xml:space="preserve">
+    <value>Виберіть тренера</value>
+  </data>
+  <data name="SuccessfulPayment" xml:space="preserve">
+    <value>Успішна оплата</value>
+  </data>
+  <data name="UnsuccessfulPayment" xml:space="preserve">
+    <value>Помилка оплати</value>
+  </data>
+  <data name="Enum_EGenderType_Female" xml:space="preserve">
+    <value>Жіноча</value>
+  </data>
+  <data name="Enum_EGenderType_Male" xml:space="preserve">
+    <value>Чоловіча</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_Active" xml:space="preserve">
+    <value>Активний</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_Frozen" xml:space="preserve">
+    <value>Призупинений</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_New" xml:space="preserve">
+    <value>Новий</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_NoActive" xml:space="preserve">
+    <value>Не активний</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_Payed" xml:space="preserve">
+    <value>Оплачений</value>
+  </data>
+  <data name="Enum_ESubscriptionType_AllDayOneMonth" xml:space="preserve">
+    <value>Повний безліміт, один місяць</value>
+  </data>
+  <data name="Enum_ESubscriptionType_AllDaySixMonth" xml:space="preserve">
+    <value>Повний безліміт, шість місяців</value>
+  </data>
+  <data name="Enum_ESubscriptionType_AllDayThreeMonth" xml:space="preserve">
+    <value>Повний безліміт, три місяці</value>
+  </data>
+  <data name="Enum_ESubscriptionType_DayTimeOneMonth" xml:space="preserve">
+    <value>Денний час, один місяць</value>
+  </data>
+  <data name="Enum_ESubscriptionType_DayTimeSixMonth" xml:space="preserve">
+    <value>Денний час, шість місяців</value>
+  </data>
+  <data name="Enum_ESubscriptionType_DayTimeThreeMonth" xml:space="preserve">
+    <value>Денний час, три місяці</value>
+  </data>
+  <data name="Enum_ETrainingRecordStatus_Closed" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="Enum_ETrainingRecordStatus_New" xml:space="preserve">
+    <value>Новий</value>
+  </data>
+  <data name="Enum_ETrainingRecordStatus_Payed" xml:space="preserve">
+    <value>Оплачено</value>
+  </data>
+  <data name="Enum_ETrainingRecordStatus_Unpayed" xml:space="preserve">
+    <value>Не оплачено</value>
+  </data>
+  <data name="AddRecord" xml:space="preserve">
+    <value>Записатись</value>
+  </data>
+  <data name="ChooseDate" xml:space="preserve">
+    <value>Виберіть дату</value>
+  </data>
+  <data name="ChooseTime" xml:space="preserve">
+    <value>Виберіть час</value>
+  </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>ua</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Enum_ESubscriptionStatus_Expired" xml:space="preserve">
+    <value>Використаний</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Ціна</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Дата закінчення</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Дата початку</value>
+  </data>
+  <data name="SubscroptionType" xml:space="preserve">
+    <value>Тип абонементу</value>
+  </data>
+  <data name="ErrorExtension" xml:space="preserve">
+    <value>Неправильний формат файла, дозвалені: jpg, jpeg, png, gif</value>
+  </data>
+  <data name="ErrorSize" xml:space="preserve">
+    <value>Завелений файл, повинен бути не більше 2mb</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ні</value>
+  </data>
+  <data name="ResumeSubscription" xml:space="preserve">
+    <value>Відновити абонемент</value>
+  </data>
+  <data name="ResumeSubscriptionQuenstion" xml:space="preserve">
+    <value>Ви хочете відновити ваш абонемент?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Так</value>
+  </data>
+  <data name="ActivateSubscription" xml:space="preserve">
+    <value>Активувати абонемент</value>
+  </data>
+  <data name="ActivateSubscriptionQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете активувати абонемент?</value>
+  </data>
+  <data name="LeftFreezeDays" xml:space="preserve">
+    <value>Залишилось днів для заморозки</value>
+  </data>
+  <data name="NoSubscriptions" xml:space="preserve">
+    <value>У вас немає абонементів</value>
+  </data>
+  <data name="DeleteSubscription" xml:space="preserve">
+    <value>Видалити абонемент</value>
+  </data>
+  <data name="DeleteSubscriptionQuestion" xml:space="preserve">
+    <value>Ви хочете видалити цей абонемент?</value>
+  </data>
+  <data name="SubscriptionFreeze" xml:space="preserve">
+    <value>Заморозити абонемент</value>
+  </data>
+  <data name="BySubscriptionError" xml:space="preserve">
+    <value>Ви не можете мати більше трьох активних абонементів</value>
+  </data>
+  <data name="GoBackHome" xml:space="preserve">
+    <value>Назад на головну</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Головна</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
+  <data name="MainPortal" xml:space="preserve">
+    <value>Головний портал</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>детальніше</value>
+  </data>
+  <data name="MoreDetails" xml:space="preserve">
+    <value>Детальніше</value>
+  </data>
+  <data name="Nutrition" xml:space="preserve">
+    <value>Харчування</value>
+  </data>
+  <data name="OurTrainers" xml:space="preserve">
+    <value>Тренери</value>
+  </data>
+  <data name="Panel" xml:space="preserve">
+    <value>Панель</value>
+  </data>
+  <data name="Enum_EPaymentStatus_Error" xml:space="preserve">
+    <value>Помилкова</value>
+  </data>
+  <data name="Enum_EPaymentStatus_New" xml:space="preserve">
+    <value>Нова</value>
+  </data>
+  <data name="Enum_EPaymentStatus_Success" xml:space="preserve">
+    <value>Успішна</value>
+  </data>
+  <data name="EditYourData" xml:space="preserve">
+    <value>Відредагуйте вашу інформацію</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Цей Email вже використовується</value>
+  </data>
+  <data name="CancelRecord" xml:space="preserve">
+    <value>Відновити</value>
+  </data>
+  <data name="CancelRecordQuestion" xml:space="preserve">
+    <value>Ви хочете відмінити запис на тренування?</value>
+  </data>
+  <data name="BuySubscription" xml:space="preserve">
+    <value>Купити абонемент</value>
+  </data>
+  <data name="EditInfo" xml:space="preserve">
+    <value>Відредагуйте свої дані</value>
+  </data>
+  <data name="FreezeSubscription" xml:space="preserve">
+    <value>Заморозити абонемент</value>
+  </data>
+  <data name="MyTrainingRecords" xml:space="preserve">
+    <value>Мої записи на тренування</value>
+  </data>
+  <data name="NewTrainingRecord" xml:space="preserve">
+    <value>Записатись на тренування</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>Статус оплати</value>
+  </data>
+  <data name="PayTitle" xml:space="preserve">
+    <value>Оплатити</value>
+  </data>
+  <data name="RecordsTitle" xml:space="preserve">
+    <value>Записи на тренування</value>
+  </data>
+  <data name="YourInfo" xml:space="preserve">
+    <value>Ваша інформація</value>
+  </data>
+  <data name="Error_ManyTrainerRecords" xml:space="preserve">
+    <value>Немає вільного місця на цю годину</value>
+  </data>
+  <data name="Error_ManyUserTrainingRecords" xml:space="preserve">
+    <value>У вас не може бути більше одного активного запису на тренування</value>
+  </data>
+</root>
